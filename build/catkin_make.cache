@@ -1,0 +1,2 @@
+bot_world:ogmen_bot_description
+-DCATKIN_DEVEL_PREFIX=/home/vishv/vishv_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vishv/vishv_ws/install -G Unix Makefiles
