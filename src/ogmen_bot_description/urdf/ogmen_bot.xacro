@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<robot name="ogmen_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find ogmen_bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find ogmen_bot_description)/urdf/ogmen_bot.trans" />
+<xacro:include filename="$(find ogmen_bot_description)/urdf/ogmen_bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="8.028730558514525e-05 2.714097016713988e-07 0.06992514423213515" rpy="0 0 0"/>
+    <mass value="4.2335821207715645"/>
+    <inertia ixx="0.017644" iyy="0.017635" izz="0.028242" ixy="0.0" iyz="-0.0" ixz="-1.6e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="6.938893903907228e-18 0.0075000000000000205 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="0.1577707830632794"/>
+    <inertia ixx="0.000145" iyy="0.000284" izz="0.000145" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.035 -0.105 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.035 -0.105 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="6.938893903907228e-18 -0.00750000000000009 2.0816681711721685e-17" rpy="0 0 0"/>
+    <mass value="0.15777078306327938"/>
+    <inertia ixx="0.000145" iyy="0.000284" izz="0.000145" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.035 0.105 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.035 0.105 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="castor_1">
+  <inertial>
+    <origin xyz="0.03900000000000002 3.056047790149986e-18 -0.008558719423394525" rpy="0 0 0"/>
+    <mass value="0.0156940067555203"/>
+    <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.1 -0.0 -0.02" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/castor_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.1 -0.0 -0.02" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ogmen_bot_description/meshes/castor_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+<link name="lidar"/>
+<link name="rgb"/>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.15" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar"/>
+</joint>
+
+<joint name="rgb_joint" type="fixed">
+  <origin xyz="0.05 0.0 0.15" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rgb"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.035 0.105 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.035 -0.105 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="castor_joint" type="fixed">
+  <origin xyz="-0.1 0.0 0.02" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="castor_1"/>
+</joint>
+
+</robot>
